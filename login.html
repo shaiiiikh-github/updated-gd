@@ -1,0 +1,58 @@
+<!-- login.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Login - GD Platform</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style1.css" />
+</head>
+<body>
+  <section class="moderator-panel">
+    <h1 class="hero-heading">Login to Your Account</h1>
+    <div class="auth-container">
+        <h2>Login</h2>
+        <form id="login-form" class="auth-form">
+          <label for="email">Email</label>
+          <input type="email" id="email" placeholder="Enter your email" required>
+      
+          <label for="password">Password</label>
+          <input type="password" id="password" placeholder="Enter your password" required>
+      
+          <button type="submit" class="auth-btn">Login</button>
+          <p class="auth-toggle">Don't have an account? <a href="signup.html">Sign up</a></p>
+        </form>
+    </div>
+  </section>
+
+  <script>
+    document.getElementById('login-form').addEventListener('submit', function (e) {
+      e.preventDefault();
+      const stored = JSON.parse(localStorage.getItem('user'));
+      const email = document.getElementById('email').value;
+      const password = document.getElementById('password').value;
+
+      if (stored && stored.email === email && stored.password === password) {
+        const role = stored.role;
+
+        switch (role) {
+          case 'participant':
+            window.location.href = 'participant-dashboard.html';
+            break;
+          case 'moderator':
+            window.location.href = 'moderator-panel.html';
+            break;
+          case 'evaluator':
+            window.location.href = 'evaluator-dashboard.html';
+            break;
+          default:
+            alert('Unknown role.');
+        }
+      } else {
+        alert('Invalid credentials!');
+      }
+    });
+  </script>
+</body>
+</html>

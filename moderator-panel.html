@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Moderator Panel | PrepSphere</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header>
+    <div class="logo">PrepSphere</div>
+    <nav>
+      <a href="moderator-panel.html">Moderator Home</a>
+      <a href="logout.html" class="btn btn-primary">Logout</a>
+    </nav>
+  </header>
+
+  <section class="moderator-panel">
+    <h1 class="section-title">Moderator Control Panel</h1>
+    <p class="section-subtitle">Select participants, topic, and duration to create a GD Room</p>
+
+    <form class="form-glass" id="gd-room-form">
+      <div class="form-group">
+        <label for="topic">Select GD Topic</label>
+        <select id="topic" required>
+          <option value="">Choose Topic</option>
+          <option>Impact of Social Media</option>
+          <option>Electric Vehicles: Future or Fad?</option>
+          <option>AI in Education</option>
+          <option>Work From Home - Boon or Bane?</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="duration">Set GD Duration (minutes)</label>
+        <input type="number" id="duration" min="1" max="60" placeholder="Enter duration..." required />
+      </div>
+
+      <div class="form-group">
+        <label>Select Participants (Top Scorers)</label>
+        <div class="participants-list">
+          <label><input type="checkbox" name="participants" value="Alice"> Alice (Score: 92)</label>
+          <label><input type="checkbox" name="participants" value="Bob"> Bob (Score: 89)</label>
+          <label><input type="checkbox" name="participants" value="Charlie"> Charlie (Score: 87)</label>
+          <label><input type="checkbox" name="participants" value="Diana"> Diana (Score: 85)</label>
+        </div>
+      </div>
+
+      <button type="submit" class="btn btn-secondary">Create GD Room</button>
+    </form>
+  </section>
+
+  <footer>
+    <p>© 2025 PrepSphere. All rights reserved.</p>
+  </footer>
+</body>
+</html>

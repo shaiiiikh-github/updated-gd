@@ -1,0 +1,38 @@
+<!-- signup.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Signup - GD Platform</title>
+  <link rel="stylesheet" href="style1.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" rel="stylesheet">
+</head>
+<body>
+  <section class="auth-section">
+    <div class="auth-container">
+      <h1>Sign Up</h1>
+      <p>Create your account to get started</p>
+      <form action="/signup" method="POST" class="auth-form">
+        <input type="text" name="name" placeholder="Full Name" required>
+        <input type="email" name="email" placeholder="Email Address" required>
+        <input type="password" name="password" placeholder="Password" required>
+        <input type="password" name="confirm_password" placeholder="Confirm Password" required>
+        
+        <!-- Role Dropdown -->
+        <div class="form-group">
+          <select name="role" id="role" class="auth-select" required>
+            <option value="" disabled selected>Select Role</option>
+            <option value="moderator">Moderator</option>
+            <option value="participant">Participant</option>
+            <option value="evaluator">Evaluator</option>
+          </select>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Create Account</button>
+        <p class="auth-switch">Already have an account? <a href="login.html">Login</a></p>
+      </form>
+    </div>
+  </section>
+</body>
+</html>

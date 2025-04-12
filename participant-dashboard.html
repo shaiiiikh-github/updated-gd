@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Participant Dashboard | PrepSphere</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header>
+    <div class="logo">PrepSphere</div>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="#">My Sessions</a>
+      <a href="logout.html" class="btn btn-primary">Logout</a>
+    </nav>
+  </header>
+
+  <section class="dashboard">
+    <h1>Welcome, Participant 👋</h1>
+    <p>Here are your available sessions</p>
+
+    <div class="session-cards">
+      <div class="session-card">
+        <h3>GD Topic: Role of AI in Jobs</h3>
+        <p><strong>Start Time:</strong> 5:00 PM</p>
+        <p><strong>Moderator:</strong> Mr. Sharma</p>
+        <p><strong>Status:</strong> Ongoing</p>
+        <a href="live-room.html" class="btn btn-primary">Join Now</a>
+      </div>
+
+      <div class="session-card">
+        <h3>PI Mock: Software Developer</h3>
+        <p><strong>Start Time:</strong> 6:30 PM</p>
+        <p><strong>Moderator:</strong> Ms. Patel</p>
+        <p><strong>Status:</strong> Scheduled</p>
+        <button class="btn" disabled>Not Started</button>
+      </div>
+
+      <div class="session-card">
+        <h3>GD Topic: Is Remote Work the Future?</h3>
+        <p><strong>Start Time:</strong> 7:15 PM</p>
+        <p><strong>Moderator:</strong> Mr. Verma</p>
+        <p><strong>Status:</strong> Scheduled</p>
+        <button class="btn" disabled>Not Started</button>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>© 2025 PrepSphere. All rights reserved.</p>
+  </footer>
+</body>
+</html>

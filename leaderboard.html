@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Leaderboard - GD Platform</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style1.css" />
+</head>
+<body>
+  <section class="leaderboard-section">
+    <div class="leaderboard-container">
+      <h1 class="hero-heading">Leaderboard</h1>
+      <p>Here are the top performers in the group discussion and interview practice platform</p>
+
+      <!-- Search and Sort Options -->
+      <div class="leaderboard-controls">
+        <input type="text" id="search" placeholder="Search by name..." onkeyup="searchLeaderboard()" />
+        <button onclick="sortLeaderboard('score')">Sort by Score</button>
+        <button onclick="sortLeaderboard('rank')">Sort by Rank</button>
+      </div>
+
+      <!-- Leaderboard Table -->
+      <table class="leaderboard-table" id="leaderboard-table">
+        <thead>
+          <tr>
+            <th>Rank</th>
+            <th>Participant</th>
+            <th>Score</th>
+            <th>Role</th>
+          </tr>
+        </thead>
+        <tbody id="leaderboard-body">
+          <!-- Dynamic leaderboard data will be populated here -->
+        </tbody>
+      </table>
+
+      <!-- Your Rank Section -->
+      <div id="your-rank">
+        <h2>Your Rank: <span id="user-rank">Loading...</span></h2>
+      </div>
+
+      <div class="leaderboard-buttons">
+        <a href="participant-dashboard.html" class="btn btn-primary">Back to Dashboard</a>
+        <a href="login.html" class="btn btn-secondary">Log Out</a>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    const leaderboardData = [
+      { rank: 1, name: 'John Doe', score: 95, role: 'Participant' },
+      { rank: 2, name: 'Jane Smith', score: 90, role: 'Participant' },
+      { rank: 3, name: 'Sam Lee', score: 85, role: 'Participant' },
+      { rank: 4, name: 'Mike Johnson', score: 80, role: 'Participant' },
+      { rank: 5, name: 'Sara Williams', score: 75, role: 'Participant' },
+      // More entries...
+    ];
+
+    // Load leaderboard data
+    function loadLeaderboard() {
+      const tbody = document.getElementById('leaderboard-body');
+      tbody.innerHTML = '';
+      leaderboardData.forEach(entry => {
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+          <td>${entry.rank}</td>
+          <td>${entry.name}</td>
+          <td>${entry.score}</td>
+          <td>${entry.role}</td>
+        `;
+        tbody.appendChild(tr);
+      });
+    }
+
+    // Search leaderboard by name
+    function searchLeaderboard() {
+      const searchTerm = document.getElementById('search').value.toLowerCase();
+      const filteredData = leaderboardData.filter(entry => entry.name.toLowerCase().includes(searchTerm));
+      updateLeaderboard(filteredData);
+    }
+
+    // Sort leaderboard by score or rank
+    function sortLeaderboard(criteria) {
+      const sortedData = [...leaderboardData].sort((a, b) => a[criteria] - b[criteria]);
+      updateLeaderboard(sortedData);
+    }
+
+    // Update leaderboard with sorted or filtered data
+    function updateLeaderboard(data) {
+      const tbody = document.getElementById('leaderboard-body');
+      tbody.innerHTML = '';
+      data.forEach(entry => {
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+          <td>${entry.rank}</td>
+          <td>${entry.name}</td>
+          <td>${entry.score}</td>
+          <td>${entry.role}</td>
+        `;
+        tbody.appendChild(tr);
+      });
+    }
+
+    // Load leaderboard on page load
+    window.onload = function() {
+      loadLeaderboard();
+    };
+
+    // Optionally, show the user's rank dynamically (example placeholder)
+    document.getElementById('user-rank').textContent = '5';  // Replace with actual user data
+  </script>
+</body>
+</html>

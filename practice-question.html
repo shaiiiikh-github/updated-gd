@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Practice Questions | PrepSphere</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header>
+    <div class="logo">PrepSphere</div>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="participant-dashboard.html">Dashboard</a>
+      <a href="logout.html" class="btn btn-primary">Logout</a>
+    </nav>
+  </header>
+
+  <section class="practice-section">
+    <h1>GD Practice Questions</h1>
+    <p id="progress-text">Question <span id="current-q">1</span> of 20</p>
+
+    <div class="question-box">
+      <h2 id="question">Loading question...</h2>
+      <textarea id="response" rows="5" placeholder="Type your brief opinion here..."></textarea>
+      <button class="btn btn-primary" onclick="submitAnswer()">Submit</button>
+    </div>
+
+    <div class="progress-bar">
+      <div class="progress-fill" id="progressFill" style="width: 0%;"></div>
+    </div>
+  </section>
+
+  <footer>
+    <p>© 2025 PrepSphere. All rights reserved.</p>
+  </footer>
+
+  <script>
+    const questions = [
+      "Is social media doing more harm than good?",
+      "Should AI replace human decision-making?",
+      "Online education vs traditional education — what's better?",
+      "Is remote work the new normal?",
+      "Can startups drive India's economic future?",
+      "Importance of emotional intelligence in leadership",
+      "How to tackle unemployment among youth?",
+      "Impact of climate change on developing countries",
+      "Role of technology in modern education",
+      "How ethical is genetic engineering?",
+      "Should voting be mandatory?",
+      "Does India need a two-party system?",
+      "How can we improve mental health awareness?",
+      "Can India become a global manufacturing hub?",
+      "Impact of OTT platforms on cinema",
+      "Importance of financial literacy in students",
+      "Should exams be the only method of evaluation?",
+      "Role of women in combat forces",
+      "Space exploration: Is it worth the cost?",
+      "Should coding be a part of basic education?"
+    ];
+
+    let currentQ = localStorage.getItem('gdCurrentQ') || 0;
+    currentQ = parseInt(currentQ);
+    const progressFill = document.getElementById("progressFill");
+    const questionBox = document.getElementById("question");
+    const currentQText = document.getElementById("current-q");
+
+    function loadQuestion() {
+      if (currentQ >= 20) {
+        questionBox.innerText = "🎉 You’ve completed all 20 practice questions!";
+        document.getElementById("response").style.display = "none";
+        document.querySelector(".btn").style.display = "none";
+        return;
+      }
+      questionBox.innerText = questions[currentQ];
+      currentQText.innerText = currentQ + 1;
+      progressFill.style.width = `${(currentQ / 20) * 100}%`;
+    }
+
+    function submitAnswer() {
+      const response = document.getElementById("response").value.trim();
+      if (response === "") {
+        alert("Please enter your response.");
+        return;
+      }
+
+      // Store progress
+      currentQ++;
+      localStorage.setItem('gdCurrentQ', currentQ);
+      localStorage.setItem('gdProgress', currentQ); // Used in dashboard
+      document.getElementById("response").value = "";
+      loadQuestion();
+    }
+
+    loadQuestion();
+  </script>
+</body>
+</html>

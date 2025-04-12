@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Live GD Room | PrepSphere</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header>
+    <div class="logo">PrepSphere</div>
+    <nav>
+      <a href="participant-dashboard.html">Dashboard</a>
+      <a href="logout.html" class="btn btn-primary">Logout</a>
+    </nav>
+  </header>
+
+  <section class="gd-room">
+    <div class="room-grid">
+
+      <!-- Left Panel: Participants -->
+      <aside class="gd-participants">
+        <h3>Participants</h3>
+        <ul id="participants-list">
+          <li class="participant active">👤 Alice (Speaking)</li>
+          <li class="participant">👤 Bob</li>
+          <li class="participant">👤 Charlie</li>
+          <li class="participant">👤 You</li>
+        </ul>
+      </aside>
+
+      <!-- Center Panel: Topic & Chat -->
+      <main class="gd-main">
+        <div class="gd-header">
+          <h2 id="gd-topic">🌐 Topic: Impact of Social Media on Youth</h2>
+          <div id="gd-timer">Time Left: <span id="time">10:00</span></div>
+        </div>
+
+        <div class="chat-box" id="chat-box">
+          <div class="chat-message"><strong>Alice:</strong> I believe social media is a double-edged sword.</div>
+          <div class="chat-message"><strong>You:</strong> Absolutely, it’s about how we use it.</div>
+        </div>
+
+        <div class="chat-input">
+          <input type="text" id="chat-input" placeholder="Type your message..." />
+          <button onclick="sendMessage()">Send</button>
+        </div>
+      </main>
+
+      <!-- Right Panel: Notes / Controls -->
+      <aside class="gd-controls">
+        <h3>Notes</h3>
+        <textarea placeholder="Jot down key points here..."></textarea>
+      </aside>
+    </div>
+  </section>
+
+  <footer>
+    <p>© 2025 PrepSphere. All rights reserved.</p>
+  </footer>
+
+  <script>
+    // Simple Timer Countdown (10 min)
+    let seconds = 600;
+    const timerEl = document.getElementById("time");
+    const interval = setInterval(() => {
+      const mins = Math.floor(seconds / 60);
+      const secs = seconds % 60;
+      timerEl.textContent = `${String(mins).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
+      if (seconds === 0) {
+        clearInterval(interval);
+        alert("GD Time's Up!");
+      }
+      seconds--;
+    }, 1000);
+
+    // Simple Text Chat System
+    function sendMessage() {
+      const input = document.getElementById("chat-input");
+      const msg = input.value.trim();
+      if (!msg) return;
+      const chatBox = document.getElementById("chat-box");
+      const msgEl = document.createElement("div");
+      msgEl.className = "chat-message";
+      msgEl.innerHTML = `<strong>You:</strong> ${msg}`;
+      chatBox.appendChild(msgEl);
+      chatBox.scrollTop = chatBox.scrollHeight;
+      input.value = "";
+    }
+  </script>
+</body>
+</html>
